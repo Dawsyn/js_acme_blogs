@@ -6,21 +6,31 @@ function createElemWithText (elemType = "p", textCon = "", clsName)
     return newElem;
 }
 
-function createSelectOptions (user, options)
+function createSelectOptions (users, options)
 {
-   let user = fetch(`https://jsonplaceholder.typicode.com/users`);
-   let userCount = user.count(); 
-   if(user === NULL)
+   users.forEach((userId) =>
    {
-    user = 'undifined';
+        console.log(userId);
+   });
+   
+   //fetch(`https://jsonplaceholder.typicode.com/users`);
+  
+   if(users === NULL)
+   {
+    users = 'undifined';
     return  user;
    }
-   while (userCount > 1)
-   {
-    options = document.createElement();
-    options.id = user.id;
-    options.name = user.name;
-    userCount--;
-   }
-   return options[userCount];
+
+   options = document.createElement();
+
+   users.forEach((user) => {
+    options.id = users.id;
+    options.name = users.name;
+    console.log(user);
+   });
+
+   
+    
+   
+   return options[users];
 }
