@@ -1,3 +1,9 @@
+const data = fetch(`https://jsonplaceholder.typicode.com/users`)
+   .then(response => response.json())
+   .then(data => {
+    console.log(data);
+   })
+
 function createElemWithText (elemType = "p", textCon = "", clsName)
 {
     newElem = document.createElement(elemType); 
@@ -6,31 +12,38 @@ function createElemWithText (elemType = "p", textCon = "", clsName)
     return newElem;
 }
 
-function createSelectOptions (users, options)
-{
-   users.forEach((userId) =>
+function createSelectOptions (users)
+{ 
+   if(!users)
    {
-        console.log(userId);
-   });
-   
-   //fetch(`https://jsonplaceholder.typicode.com/users`);
-  
-   if(users === NULL)
-   {
-    users = 'undifined';
-    return  user;
+    users = undefined;
+    return users;
    }
 
-   options = document.createElement();
+  options = [];
 
    users.forEach((user) => {
-    options.id = users.id;
-    options.name = users.name;
-    console.log(user);
+    let option = document.createElement("option");
+    option.value = user.id;
+    option.textContent = user.name;
+    options.push(option);
    });
-
    
-    
-   
-   return options[users];
+   return options;
 }
+
+function toggleCommentSection (postId)
+{
+    let section = document.querySelector(`.comment_section[data_post_id="${postId}"]`);
+    if(!postId)
+    return;
+    if(!section)
+    return null;
+    
+    
+    
+    section.classList.toggle("hide");
+    return section;
+    
+}
+
